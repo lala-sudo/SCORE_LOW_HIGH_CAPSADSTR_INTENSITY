@@ -159,12 +159,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-.xml
 data/**
 models/**
 references/
-/.idea/vcs.xml
-/.idea/SCORE_LOW_HIGH_CAPSADSTR_INTENSITY.iml
-/.idea/inspectionProfiles/profiles_settings.xml
-/.idea/modules.xml
-/.idea/misc.xml
+.idea/
