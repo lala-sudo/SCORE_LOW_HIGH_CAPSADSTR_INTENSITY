@@ -160,6 +160,11 @@ cython_debug/
 #.idea/
 
 .xml
-data/
-models/
+data/**
+models/**
 references/
+/.idea/vcs.xml
+/.idea/SCORE_LOW_HIGH_CAPSADSTR_INTENSITY.iml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/modules.xml
+/.idea/misc.xml
