@@ -26,19 +26,21 @@ logging.basicConfig(level=logging.INFO, format=log_fmt)
 @click.option('--root_folder', type=click.Path(exists=True))
 @click.option('--raw_file_name', type=click.Path())
 @click.option("--filter_by", type=str)
-def main(experiment_name, root_folder, raw_file_name, filter_by):
+@click.option("--force_rebuild", type=bool)
+def main(experiment_name, root_folder, raw_file_name, filter_by, force_rebuild=False):
     logging.info("0. Setting Environment")
     filter_by = dict(ast.literal_eval(filter_by))
     env = set_environment(experiment_name=experiment_name,
                           root_folder=root_folder,
-                          raw_file_name=raw_file_name)
+                          raw_file_name=raw_file_name,
+                          random_state=random_seed)
 
     columns_to_not_consider = env["columns_to_drop_from_our_knowledge"] + env["duplicated_columns"] + \
                               env["columns_have_lot_missing_values"] + env["columns_to_drop_from_data_analysis"] + \
                               env["correlated_columns_to_drop"] + env["columns_to_ignore"]
 
     logging.info("1. Making Dataset")
-    if not os.path.exists(env["interim_output_path_file"]):
+    if not os.path.exists(env["interim_output_path_file"]) or force_rebuild is True:
         logging.info(f"1.1 Interim file in {env['interim_output_path_file']} Does Not Exists, Creating New One")
         make_dataset(env["raw_input_path_file"],
                      index_col=env["index_col"],
@@ -48,20 +50,21 @@ def main(experiment_name, root_folder, raw_file_name, filter_by):
                      save_in=env["interim_output_path_file"])
 
     logging.info("2. Building Features")
-    if not os.path.exists(env["processed_output_path_file"]):
+    if not os.path.exists(env["processed_output_path_file"]) or force_rebuild is True:
         build_features(df=env['interim_output_path_file'],
                        index_col=env["index_col"],
                        categorical_columns=env["categorical_columns"],
                        save_in=env["processed_output_path_file"])
 
     logging.info("3. Split Data")
-    if not os.path.exists(env["ready_output_path_file"]):
+    if not os.path.exists(env["ready_output_path_file"]) or force_rebuild is True:
         split_data(df=env["processed_output_path_file"],
                    index_col=env["index_col"],
                    target_column_name=env["target_column_name"],
                    number_folds=env["number_folds"],
                    random_seed=random_seed,
                    save_in=env["ready_output_path_file"])
+        logging.info("3.1 Data Splited.")
 
     logging.info("4. Get Best Model")
     grid_search, split_data_, X, y = get_best_model(data_split_path_file=env["ready_output_path_file"],

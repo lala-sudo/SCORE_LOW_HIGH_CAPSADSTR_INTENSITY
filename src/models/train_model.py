@@ -65,7 +65,7 @@ def get_best_model(data_split_path_file, param_grid, random_seed=0, save_in=None
           for i in split_data.keys()]
 
     # Create a based model
-    rf = RandomForestRegressor(random_state=random_seed)
+    rf = RandomForestRegressor()
 
     # Instantiate the grid search model
     grid_search = GridSearchCV(estimator=rf,

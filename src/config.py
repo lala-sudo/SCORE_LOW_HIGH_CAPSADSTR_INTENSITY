@@ -1,7 +1,7 @@
 import os.path
 
 
-def set_environment(experiment_name, root_folder, raw_file_name):
+def set_environment(experiment_name, root_folder, raw_file_name, random_state=0):
     environment = {
         "raw_input_path_file": os.path.join(root_folder, "data", "raw", raw_file_name),
         "interim_output_path_file": os.path.join(root_folder, "data", "interim", experiment_name,
@@ -42,7 +42,8 @@ def set_environment(experiment_name, root_folder, raw_file_name):
                         'min_samples_leaf': [1],
                         'min_samples_split': [2, 4],
                         'n_estimators': [50, 100, 200],
-                        'criterion': ["squared_error"]
+                        'criterion': ["squared_error"],
+                        'random_state': [random_state]
         }
     }
 
