@@ -41,13 +41,14 @@ def main(experiment_name, root_folder, raw_file_name, filter_by, force_rebuild=F
 
     logging.info("1. Making Dataset")
     if not os.path.exists(env["interim_output_path_file"]) or force_rebuild is True:
-        logging.info(f"1.1 Interim file in {env['interim_output_path_file']} Does Not Exists, Creating New One")
+        logging.info(f"\t1.1 Interim file in {env['interim_output_path_file']} Does Not Exists, Creating New One")
         make_dataset(env["raw_input_path_file"],
                      index_col=env["index_col"],
                      drop_all_rows_with_na=True,
                      columns_to_not_consider=columns_to_not_consider,
                      filter_by=filter_by,
                      save_in=env["interim_output_path_file"])
+        logging.info("\t1.2 Dataset Done.")
 
     logging.info("2. Building Features")
     if not os.path.exists(env["processed_output_path_file"]) or force_rebuild is True:
@@ -55,6 +56,7 @@ def main(experiment_name, root_folder, raw_file_name, filter_by, force_rebuild=F
                        index_col=env["index_col"],
                        categorical_columns=env["categorical_columns"],
                        save_in=env["processed_output_path_file"])
+        logging.info("\t2.1 Build Features Done.")
 
     logging.info("3. Split Data")
     if not os.path.exists(env["ready_output_path_file"]) or force_rebuild is True:
@@ -64,20 +66,24 @@ def main(experiment_name, root_folder, raw_file_name, filter_by, force_rebuild=F
                    number_folds=env["number_folds"],
                    random_seed=random_seed,
                    save_in=env["ready_output_path_file"])
-        logging.info("3.1 Data Splited.")
+        logging.info("\t3.1 Data Splited.")
 
     logging.info("4. Get Best Model")
-    grid_search, split_data_, X, y = get_best_model(data_split_path_file=env["ready_output_path_file"],
-                                                    param_grid=env["param_grid"],
-                                                    save_in=env["save_model_in"],
-                                                    random_seed=random_seed)
-    metrics = evaluate(split_data_, grid_search.best_estimator_)
-    logging.info(f"4.1 Metrics of best model: {metrics}")
+    if not os.path.exists(env["save_model_in"]) or force_rebuild is True:
+        grid_search, split_data_, X, y = get_best_model(data_split_path_file=env["ready_output_path_file"],
+                                                        param_grid=env["param_grid"],
+                                                        save_in=env["save_model_in"],
+                                                        random_seed=random_seed)
+        metrics = evaluate(split_data_, grid_search.best_estimator_)
+        logging.info(f"\t4.1 Metrics of best model: {metrics}")
 
     logging.info("5. Save Results")
     is_done = save_results(save_model_in=env["save_model_in"],
                            save_figures_in=env["save_figures_in"],
-                           metrics=metrics,
+                           #metrics=metrics,
+                           summary_plots=False,
+                           risiduals_plot=False,
+                           save_ranking=True,
                            random_seed=random_seed)
 
     logging.info(f"Results are saved with status {is_done}")
