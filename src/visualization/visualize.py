@@ -32,8 +32,27 @@ def calculate_feature_importance(shap_values, column_names):
     return df.reset_index(drop=True).copy()
 
 
-def save_results(save_model_in, save_figures_in, target_axis_name, summary_plots=False, residuals_plot=False,
-                 save_ranking=False, random_seed=0):
+def save_shap_values_each_feature(X, shap_values, save_in=None):
+
+    if save_in is not None:
+        save_in = os.path.join(save_in, "shap_values")
+        if not os.path.exists(save_in):
+            os.makedirs(save_in)
+
+    for feature_name in X.columns:
+        col_to_analyse_index = X.columns.get_loc(feature_name)
+        col_shap_values = [row[col_to_analyse_index] for row in shap_values]
+
+        col_df = pd.DataFrame()
+        col_df["shape_values"] = col_shap_values
+        col_df = col_df.set_index(X.index)
+        col_df.to_excel(os.path.join(save_in, f"{feature_name}.xlsx"))
+
+    return True
+
+
+def save_results(save_model_in, save_figures_in, target_axis_name, summary_plots=False,
+                 residuals_plot=False, save_ranking=False, save_shap_values=False, random_seed=0):
     np.random.seed(random_seed)
     directory = os.path.dirname(save_model_in)
 
@@ -54,6 +73,11 @@ def save_results(save_model_in, save_figures_in, target_axis_name, summary_plots
     if save_figures_in is not None:
         if not os.path.exists(save_figures_in):
             os.makedirs(save_figures_in)
+
+        if save_shap_values:
+            save_shap_values_each_feature(X,
+                                          shap_values,
+                                          save_in=save_figures_in)
 
         if summary_plots is True:
             shap.initjs()

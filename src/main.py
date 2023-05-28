@@ -85,6 +85,7 @@ def main(experiment_name, configuration_file_name, force_model_rebuild=False):
                            summary_plots=True,
                            residuals_plot=True,
                            save_ranking=True,
+                           save_shap_values=True,
                            target_axis_name="intensity score",
                            random_seed=random_seed)
     logging.info(f"✅ Results are saved with status {is_done}")
