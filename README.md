@@ -106,11 +106,11 @@ By leveraging the code and models within this repository, you can re-run the mac
 2. Install the virtual environment: (Via **Terminal Interface**)
    1. Install virtualenv: `pip install virtualenv`
    2. Create your virtual environment: `python3 -m venv research_py_379 `(You can choose another name)
-   3. Activate your virtual environment: `source research_py_379/bin/activate`
+   3. Update pip by: `python3 -m pip install --upgrade pip`
+   4. Activate your virtual environment: `source research_py_379/bin/activate`
 3. Clone or Download the project from this repository.
 4. In the terminal where the environment is active SCORE_LOW_HIGH_CAPSADSTR_INTENSITY: go to the root folder of the cloned project.
-5. Update pip `python3 -m pip install --upgrade pip`
-6. Install required Python libraries `pip install -e .`
+5. Install required Python libraries `pip install -e .`
 
 ## 🚦 Run Different Experiments
 
