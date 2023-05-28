@@ -44,15 +44,18 @@ def main(experiment_name, configuration_file_name, force_model_rebuild=False):
     if not os.path.exists(settings["processed_output_path_file"]):
         build_features(df=settings["interim_output_path_file"],
                        index_col=settings["index_col"],
-                       categorical_columns=settings["categorical_columns"],
+                       categorical_columns=settings["categorical_columns_to_encode"],
                        save_in=settings["processed_output_path_file"])
         logging.info("\t2.1 Build Features is Done.")
 
     logging.info("3. Data Analyzing ...")
     if not os.path.exists(settings["analyzed_output_path_folder"]):
+        categorical_columns = []
+        categorical_columns.extend(settings["categorical_columns_to_encode"])
+        categorical_columns.extend(settings["categorical_columns_encoded"])
         analyze_data(df=settings["processed_output_path_file"],
                      index_col=settings["index_col"],
-                     categorical_columns=settings["categorical_columns"],
+                     categorical_columns=categorical_columns,
                      save_in=settings["analyzed_output_path_folder"])
         logging.info("\t3.1 Data Analysis is Done.")
 

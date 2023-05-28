@@ -41,7 +41,8 @@ def set_environment(experiment_name, root_folder, configuration_file_name):
 
     settings['columns_to_not_consider'] = columns_to_not_consider
     settings['index_col'] = configurations['data']['index_col']
-    settings['categorical_columns'] = configurations['data']['categorical_columns']
+    settings['categorical_columns_to_encode'] = configurations['data']['categorical_columns_to_encode']
+    settings['categorical_columns_encoded'] = configurations['data']['categorical_columns_encoded']
     settings['filter_by'] = configurations['data']['filter_by']
     settings['train'] = configurations['train']
 

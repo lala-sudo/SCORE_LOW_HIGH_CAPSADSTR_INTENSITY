@@ -20,7 +20,7 @@ def calculate_p_values(df, columns=None):
         for j, c in enumerate(df_columns):
             tmp = df[df[r].notnull() & df[c].notnull()]
             pearson_ = pearsonr(tmp[r], tmp[c])
-            p_values[r][c] = round(pearson_[1], 5)
+            p_values[r][c] = round(pearson_[1], 3)
 
     return p_values
 

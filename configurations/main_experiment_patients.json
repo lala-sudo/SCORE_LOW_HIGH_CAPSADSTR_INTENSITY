@@ -56,8 +56,22 @@
       "columns_to_ignore":[
          "SCORE_LOW_HIGH_CAPSADSTRIN_SOMMA"
       ],
-      "categorical_columns":[
+      "categorical_columns_to_encode":[
          "sex_f1_m2"
+      ],
+      "categorical_columns_encoded":[
+         "Group_cotnrol1_patient2",
+         "sour_low_taste_correct",
+         "sweet_low_taste_correct",
+         "bitter_low_taste_correct",
+         "salty_low_taste_correct",
+         "sour_high_taste_correct",
+         "salty_high_taste_correct",
+         "bitter_high_taste_correct",
+         "sweet_high_taste_correct",
+         "astring_low_taste_correct",
+         "astring_high_taste_correct",
+         "liketoeatspicy"
       ]
    },
    "train":{

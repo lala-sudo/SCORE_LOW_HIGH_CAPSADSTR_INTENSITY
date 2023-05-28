@@ -87,9 +87,8 @@
          "score_lowhigh_capsadstr1",
          "sex_f1_m2"
       ],
-      "categorical_columns":[
-
-      ]
+      "categorical_columns_to_encode": [],
+      "categorical_columns_encoded":[]
    },
    "train":{
       "number_folds":3,
