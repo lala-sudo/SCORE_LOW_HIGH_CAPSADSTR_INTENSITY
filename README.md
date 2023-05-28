@@ -116,15 +116,20 @@ By leveraging the code and models within this repository, you can re-run the mac
 
 From the root folder in **Terminal** where you cloned the project (make sure that your virtual environment is activated), you can run the following commands to run the experiments:
 
-- [Option 1] Main Experiment using only Controls Data:`python src/main.py --experiment_name "your_experiment_name" --configuration_file_name "main_experiment_controls.json"`
-- [Option 2] Main Experiment using only Patients' Data:`python src/main.py --experiment_name "your_experiment_name" --configuration_file_name "main_experiment_patients.json"`
+- [Option 1] Main Experiment using only Controls Data:`python src/main.py --experiment_name "20230524" --configuration_file_name "main_experiment_controls.json" --force_model_rebuild True`
+- [Option 2] Main Experiment using only Patients' Data:`python src/main.py --experiment_name "20230524" --configuration_file_name "main_experiment_patients.json" --force_model_rebuild True`
+
+♻️ You can specify different experiment_name if you want to re-force data building steps. \
+♻️ You can set force_model_rebuild to False if you want to skip models re-training for the same experiment_name.
+
+***
 
 Identically, you can run the Secondary experiments:
 
-- [Secondary] The second experiment used only Controls Data and the two most important features:`python src/main.py --experiment_name "your_experiment_name" --configuration_file_name "second_experiment_controls.json"`
-- [Secondary] The second experiment used only Patients' Data and the two most important features:`python src/main.py --experiment_name "your_experiment_name" --configuration_file_name "second_experiment_patients.json"`
-- [Secondary] The third experiment used only Controls Data and the most important feature:`python src/main.py --experiment_name "your_experiment_name" --configuration_file_name "third_experiment_controls.json"`
-- [Secondary] The third experiment used only Patients' Data and the most important feature:`python src/main.py --experiment_name "your_experiment_name" --configuration_file_name "third_experiment_patients.json"`
+- [Secondary] The second experiment used only Controls Data and the two most important features:`python src/main.py --experiment_name "20230524" --configuration_file_name "second_experiment_controls.json"`
+- [Secondary] The second experiment used only Patients' Data and the two most important features:`python src/main.py --experiment_name "20230524" --configuration_file_name "second_experiment_patients.json"`
+- [Secondary] The third experiment used only Controls Data and the most important feature:`python src/main.py --experiment_name "20230524" --configuration_file_name "third_experiment_controls.json"`
+- [Secondary] The third experiment used only Patients' Data and the most important feature:`python src/main.py --experiment_name "20230524" --configuration_file_name "third_experiment_patients.json"`
 
 ## 💬 We're here to help!
 
