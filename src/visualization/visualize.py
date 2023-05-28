@@ -32,7 +32,7 @@ def calculate_feature_importance(shap_values, column_names):
     return df.reset_index(drop=True).copy()
 
 
-def save_results(save_model_in, save_figures_in, summary_plots=False, residuals_plot=False,
+def save_results(save_model_in, save_figures_in, target_axis_name, summary_plots=False, residuals_plot=False,
                  save_ranking=False, random_seed=0):
     np.random.seed(random_seed)
     directory = os.path.dirname(save_model_in)
@@ -75,10 +75,10 @@ def save_results(save_model_in, save_figures_in, summary_plots=False, residuals_
             z = np.polyfit(y, y_pred, 1)
             p = np.poly1d(z)
             plt.plot(y, p(y), "#F8766D")
-            plt.ylabel('Predicted intensity score')
-            plt.xlabel('Experimental intensity score')
-            plt.xticks(size=18)
-            plt.yticks(size=18)
+            plt.ylabel(f'Predicted {target_axis_name}', fontsize=18)
+            plt.xlabel(f'Experimental {target_axis_name}', fontsize=18)
+            plt.xticks(size=14)
+            plt.yticks(size=14)
             plt.savefig(os.path.join(save_figures_in, "residuals.jpg"),
                         dpi=1000,
                         bbox_inches='tight')
