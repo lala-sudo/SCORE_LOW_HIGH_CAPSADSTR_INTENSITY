@@ -1,4 +1,5 @@
 import os
+import json
 import pickle
 
 import numpy as np
@@ -7,6 +8,19 @@ import pandas as pd
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
+
+
+def save_metrics(metrics, save_in):
+    mean_ = {}
+    for metric_name in metrics[list(metrics.keys())[0]].keys():
+        mean_[metric_name] = np.mean([metrics[fold][metric_name] for fold in metrics.keys()])
+
+    metrics["mean"] = mean_
+
+    with open(save_in, 'w') as fp:
+        json.dump(metrics, fp)
+
+    return metrics
 
 
 def mape(y_true, y_pred):
@@ -75,7 +89,6 @@ def get_best_model(data_split_path_file, param_grid, random_seed=0, save_in=None
                                verbose=0)
 
     grid_search.fit(X, y)
-    print("Best Parameters are:", grid_search.best_params_)
 
     if save_in is not None:
         directory = os.path.dirname(save_in)
@@ -90,5 +103,8 @@ def get_best_model(data_split_path_file, param_grid, random_seed=0, save_in=None
 
         with open(os.path.join(directory, "y.pkl"), 'wb') as f:
             pickle.dump(y, f)
+
+        with open(os.path.join(directory, "best_parameters.json"), 'w') as f:
+            json.dump(grid_search.best_params_, f)
 
     return grid_search, split_data, X, y

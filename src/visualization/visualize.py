@@ -1,5 +1,4 @@
 import os
-import json
 import pickle
 
 import numpy as np
@@ -33,7 +32,8 @@ def calculate_feature_importance(shap_values, column_names):
     return df.reset_index(drop=True).copy()
 
 
-def save_results(save_model_in, save_figures_in, summary_plots=False, risiduals_plot=False, metrics=None, save_ranking=False, random_seed=0):
+def save_results(save_model_in, save_figures_in, summary_plots=False, residuals_plot=False,
+                 save_ranking=False, random_seed=0):
     np.random.seed(random_seed)
     directory = os.path.dirname(save_model_in)
 
@@ -68,17 +68,7 @@ def save_results(save_model_in, save_figures_in, summary_plots=False, risiduals_
                         dpi=1000,
                         bbox_inches='tight')
 
-        if metrics is not None:
-            mean_ = {}
-            for metric_name in metrics[list(metrics.keys())[0]].keys():
-                mean_[metric_name] = np.mean([metrics[fold][metric_name] for fold in metrics.keys()])
-
-            metrics["mean"] = mean_
-
-            with open(os.path.join(save_figures_in, "metrics.json"), 'w') as fp:
-                json.dump(metrics, fp)
-
-        if risiduals_plot is True:
+        if residuals_plot is True:
             plt.cla()
             plt.figure(figsize=(12, 6))
             plt.scatter(x=y, y=y_pred, c="#7CAE00", alpha=0.5)

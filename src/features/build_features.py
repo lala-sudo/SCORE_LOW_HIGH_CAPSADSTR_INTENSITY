@@ -39,4 +39,4 @@ def build_features(df, categorical_columns, index_col=None, save_in=None):
     else:
         raise ValueError("cat_columns should be a list")
 
-    return df_transformed
+    return df_transformed.copy()
