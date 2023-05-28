@@ -1,3 +1,6 @@
+# Score Low High Capsadstr
+The analysis of taste function of healthy controls and patients.
+
 ## About:
 
 This project holds the technical materials used to realize the results shared in our research project: `A supervised Learning regression method for the analysis of taste function of healthy controls (HC) and patients with chemosensory loss. `
@@ -9,7 +12,7 @@ By leveraging the code and models within this repository, you can re-run the mac
 3.  Data Analysis: Create the correlation matrix for each subset (when filter data is applied) and manually conduct Fisher Test using Statistica.  ⚠️ The correlation matrix and Fisher Test shared in our work are created manually from all the datasets, without filtering by controls or patients.
 4. Create Cross Validation folds: Split data into different folds.
 5. Train Machine Learning Models: Find the best model and hyperparameters, combing grid search and cross-validation.
-6. Plot figures and Save Final Results: Create model explainability and residual figures.
+6. Plot figures and Save Final Results: Create model Explainability AI and residual figures.
 
 ## ⛳️ Project Structure:
 
@@ -24,7 +27,7 @@ By leveraging the code and models within this repository, you can re-run the mac
 │   │   │   ├── second_experiment_patients
 │   │   │   ├── third_experiment_controls
 │   │   │   └── third_experiment_patients
-│   │   └── 22052023
+│   │
 │   ├── processed
 │   │   ├── 20230524
 │   │   │   ├── main_experiment_controls
@@ -33,12 +36,11 @@ By leveraging the code and models within this repository, you can re-run the mac
 │   │   │   ├── second_experiment_patients
 │   │   │   ├── third_experiment_controls
 │   │   │   └── third_experiment_patients
-│   │   └── 22052023
-│   │       └── all_subjects
+│   │   
+│   │       
 │   ├── raw
 │   └── ready
-│       ├── 20230523
-│       │   └── all_subjects
+│       │   
 │       └── 20230524
 │           ├── main_experiment_controls
 │           ├── main_experiment_patients
@@ -47,8 +49,7 @@ By leveraging the code and models within this repository, you can re-run the mac
 │           ├── third_experiment_controls
 │           └── third_experiment_patients
 ├── models: Folder where is stored binary Machine Learning
-│   ├── 20230523
-│   │   └── all_subjects
+│   │   
 │   └── 20230524
 │       ├── main_experiment_controls
 │       ├── main_experiment_patients
@@ -85,18 +86,19 @@ By leveraging the code and models within this repository, you can re-run the mac
 
 ```
 
-> 📘 Setup Envirement
+## 📘 Setup Your Environment
 
 1. Install Python: [3.7.9](https://www.python.org/downloads/release/python-379/)
 2. Install the virtual environment: (Via **Terminal Interface**)
    1. Install virtualenv: `pip install virtualenv`
    2. Create your virtual environment: `python3 -m venv research_py_379 `(You can choose another name)
    3. Activate your virtual environment: `source research_py_379/bin/activate`
-3. Clone or Download the project from this repository:
-   1. Update pip `python3 -m pip install --upgrade pip`
-   2. Install required Python libraries `pip install -e .`
+3. Clone or Download the project from this repository.
+4. In the terminal where the environment is active SCORE_LOW_HIGH_CAPSADSTR_INTENSITY: go to the root folder of the cloned project.
+5. Update pip `python3 -m pip install --upgrade pip`
+6. Install required Python libraries `pip install -e .`
 
-> 👍 🚦 Run Different Experiments
+## 🚦 Run Different Experiments
 
 From the root folder in **Terminal** where you cloned the project (make sure that your virtual environment is activated), you can run the following commands to run the following experiments:
 
