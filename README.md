@@ -9,7 +9,7 @@ By leveraging the code and models within this repository, you can re-run the mac
 
 1. Make Dataset: In this step, we read raw data and handle missing values.
 2. Build Features: In this step, we encode categorical features.
-3.  Data Analysis: Create the correlation matrix for each subset (when filter data is applied) and manually conduct Fisher Test using Statistica.  ⚠️ The correlation matrix and Fisher Test shared in our work are created manually from all the datasets, without filtering by controls or patients.
+3.  Data Analysis: Create the correlation matrix for each subset (when filter data is applied) and conduct Fisher Test and T-Test adjusted by Bonferroni correction using Statistica.  ⚠️ The correlation matrix, Fisher Test and T-Test adjusted by Bonferroni correction were performed separately from the dataset, without filtering by controls or patients.
 4. Create Cross Validation folds: Split data into different folds.
 5. Train Machine Learning Models: Find the best model and hyperparameters, combing grid search and cross-validation.
 6. Plot figures and Save Final Results: Create model Explainability AI and residual figures.
