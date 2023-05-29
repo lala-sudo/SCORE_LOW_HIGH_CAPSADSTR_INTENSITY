@@ -131,6 +131,17 @@ Identically, you can run the Secondary experiments:
 - [Secondary] The third experiment used only Controls Data and the most important feature:`python src/main.py --experiment_name "20230524" --configuration_file_name "third_experiment_controls.json"`
 - [Secondary] The third experiment used only Patients' Data and the most important feature:`python src/main.py --experiment_name "20230524" --configuration_file_name "third_experiment_patients.json"`
 
+## Code Review
+
+The code review was inspected by ilyaschaoua@gmail.com on date 29-05-2023. Here the verified points:
+
+- :heavy_check_mark: successfully installed the environment.
+- :heavy_check_mark: successfully clone the project.
+- :heavy_check_mark: successfully run the main experiments.
+- :heavy_check_mark: successfully approved the code reviewing.
+- :heavy_check_mark: successfully approved the data processing and machine learning functions.
+- :heavy_check_mark: successfully approved the project pipeline.
+
 ## 💬 We're here to help!
 
 - Contact us: lala.chaimae.naciri@gmail.com
